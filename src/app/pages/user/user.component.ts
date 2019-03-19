@@ -33,8 +33,8 @@ export class UserComponent implements AfterViewInit , OnDestroy {
   constructor(private apollo: Apollo) { }
 
   ngAfterViewInit() {
-    // this.queryUsers(null);
-    this.sub();
+    this.queryUsers(null);
+    // this.sub();
 
   }
 

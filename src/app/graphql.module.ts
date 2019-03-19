@@ -29,12 +29,12 @@ const errorLink = onError(({ graphQLErrors, networkError }) => {
 
 
 export function createApollo(httpLink: HttpLink) {
-  const wsClient = new WebSocketLink({
-    uri: wsUri,
-    options: {
-      reconnect: true,
-    },
-  });
+  // const wsClient = new WebSocketLink({
+  //   uri: wsUri,
+  //   options: {
+  //     reconnect: true,
+  //   },
+  // });
 
   // const httpLinkWithErrorHandling = ApolloLink.from([
   //   errorLink,
@@ -48,7 +48,7 @@ export function createApollo(httpLink: HttpLink) {
       const { kind, operation } = getMainDefinition(query);
       return kind === 'OperationDefinition' && operation === 'subscription';
     },
-    wsClient,
+    // wsClient,
     httpLink.create({uri}),
   );
 
