@@ -1,0 +1,89 @@
+
+<div class="top-container">
+    <p> {{currentUser?.username}}  </p>
+    <p> {{role?.name}} </p>
+    <img src="{{qrcode}}" > 
+</div>
+
+<div class="bottom-container">
+  <ul>
+    <li>
+      <a href="javascript:" (click)="scanToTransfer()">餐票转让</a>
+    </li>
+    <!-- <li class="line"></li> -->
+    <li>
+      <a href="javascript:" (click)="reset()">修改密码</a>
+    </li>
+    <!-- <li class="line"></li> -->
+    <li>
+      <a href="javascript:" (click)="logout()" >注销</a>
+    </li>
+  </ul>
+</div>
+
+
+<weui-popup #full  >
+  <article class="weui-article">
+      <weui-loadmore  *ngIf="isLoadingResults"></weui-loadmore>
+      
+      <section>
+          <form #f="ngForm" (ngSubmit)="onResetSave()">
+              <div class="weui-cells weui-cells_form">
+            
+                  <div class="weui-cell">
+                      <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+                      <div class="weui-cell__bd">
+                          <input class="weui-input" type="password" [(ngModel)]="resetPassword" name="password" placeholder="请输入密码"
+                              weui-input="password" weui-required>
+                      </div>
+                  </div>
+
+                  <div class="weui-cell">
+                      <div class="weui-cell__hd"><label class="weui-label">确认密码</label></div>
+                      <div class="weui-cell__bd">
+                          <input class="weui-input" type="password" [(ngModel)]="confirmPassword" name="password" placeholder="请确认密码"
+                              weui-input="password" weui-required>
+                      </div>
+                  </div>
+
+                  <div class="weui-btn-area">
+                      <button class="weui-btn weui-btn_primary"
+                          [disabled]="!f.form.valid || !f.form.dirty"
+                          [ngClass]="{'weui-btn_disabled': !f.form.valid || !f.form.dirty}">确定</button>
+                  </div>
+              </div>
+            </form>
+      </section>
+  </article>
+</weui-popup>
+
+<weui-popup #transfer  >
+    <article class="transfer-article">
+        <weui-loadmore  *ngIf="isLoadingResults"></weui-loadmore>
+           
+            <div class="weui-cells weui-cells_radio">
+              <label class="weui-cell weui-check__label" for="type-{{i.id}}" *ngFor="let i of radio">
+                  <div class="weui-cell__bd">
+                      <p>{{i.name}}</p>
+                  </div>
+                  <div class="weui-cell__ft">
+                      <input type="radio" class="weui-check" [(ngModel)]="res.ticketType" name="radio1" [value]="i" id="type-{{i.id}}" >
+                      <span class="weui-icon-checked"></span>
+                  </div>
+              </label>
+            </div>
+
+            多少张票? <input type="number" class="number-input"  [(ngModel)]="res.number" name="" [value]="0" >
+
+            <p> 你好, {{ currentUser?.username }} ,您将转让 <U> {{ res.number }}  </U>张 <U>{{res.ticketType.name }}</U>票给 <U>{{ transferToUser?.username }}</U> </p>
+
+            <button class="weui-btn purple-color" (click)="submitTransfer()">提交</button>
+
+        <section>
+        </section>
+    </article>
+  </weui-popup>
+
+
+
+

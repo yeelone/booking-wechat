@@ -5,14 +5,15 @@ export interface User {
     id: number;
     username: string;
     password: string;
-    email:string;
+    email: string;
     id_card: string ;
     picture:   string;
     createdAt: string; 
     updatedAt: string; 
-    group:number;
+    group: number;
     groups: Group[];
     roles: Role[];
-    state:number ; 
-    token:string;
+    state: number; 
+    token: string;
+    qrcode:string;
 }

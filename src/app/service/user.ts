@@ -1,69 +1,38 @@
 import gql from 'graphql-tag';
 
-export const  queryUsers = gql`
-      query getUsers($skip:Int!,$take:Int!,$username:String,$email:String){
-        users(pagination:{skip:$skip,take:$take},filter:{username:$username,email:$email}){
-          totalCount
-          rows{
-            id
-            username
-            email
-            picture
-            password
-          }
+export const  queryTickets = gql`
+  query queryTickets($userId:Int!){
+      tickets(filter:{userId:$userId,count:true}){
+        totalCount
+        count{
+          breakfast
+          lunch
+          dinner
         }
+      }
       }`
 
-export const  queryUserWithGroup = gql`
-      query getUsers($skip:Int!,$take:Int!){
-        users(pagination:{skip:$skip,take:$take}){
-          totalCount
-          rows{
-            id
-            username
-            email
-            picture
-            password
-            groups{
-              totalCount
-              skip
-              take
-              rows{
-                id
-                name
-              }
-            }
-          }
-        }
-      }`
+export const queryCanteensByAdmin = gql`
+  query canteen($adminId:Int!) {
+    canteens(filter:{adminID:$adminId}) {
+      rows{
+        id
+        qrcode
+        qrcodeUuid
+        name
 
-export const  queryUserWithRole = gql`
-      query getUsers($skip:Int!,$take:Int!){
-        users(pagination:{skip:$skip,take:$take}){
-          totalCount
-          rows{
-            id
-            username
-            email
-            picture
-            password
-            roles{
-              totalCount
-              skip
-              take
-              rows{
-                id
-                name
-              }
-            }
-          }
+        admin{
+          id
+          username
         }
-      }`
-
+      }
+    }
+  }
+`
 
 export const  updateUser = gql`
-    mutation updateUser($id:Int!,$username:String,$email:String,$picture:String){
-      updateUser(input:{id:$id,username:$username,email:$email,picture:$picture}){
+    mutation updateUser($id:Int!,$username:String,$password:String, $email:String,$picture:String){
+      updateUser(input:{id:$id,username:$username,email:$email,picture:$picture,password:$password}){
         id
         username
         picture
@@ -72,19 +41,123 @@ export const  updateUser = gql`
       }
 }`
 
-export const  createUser = gql`
-    mutation createUser($username: String!,$email: String!$picture:String){
-      createUser(input:{username:$username,email:$email,password:"123456",picture:$picture}){
+export const loginUser = gql`
+  mutation login($username:String!, $password: String!) {
+    login(input:{username:$username,password:$password}){
+      token
+      permissions
+      user{
         id
         username
-        picture
-        email
-        state 
-      }
-}`
+        qrcode
+        groups{
+          totalCount
+          rows{
+            id
+            name
+          }
+        }
 
-export const deleteUsers = gql`
-  mutation deleteUser($ids:[Int!]!) {
-    deleteUser(input:{ids:$ids})
+        roles{
+          rows{
+            id
+            name
+          }
+        }
+
+        tickets(filter:{count:true}){
+          totalCount
+          count{
+            breakfast
+            lunch
+            dinner
+          }
+        }
+      }
+    }
+  }
+`
+
+export const logoutUser = gql`
+  mutation logout($username:String!) {
+    logout(input:{username:$username})
+  }
+`
+
+export const queryCanteensOfGroup =  gql`
+  query getGroups($gid:Int!) {
+  groups(filter:{id:$gid}){
+    rows{
+      id
+      name
+      
+      canteens{
+        totalCount
+        rows{
+          id
+          name
+          breakfastTime
+          lunchTime
+          dinnerTime
+        }
+      }
+    }
+  }
+}
+`
+
+export const bookingBreakfast=gql`
+  mutation booking($userId:Int!,$canteenId:Int!,$date:String!) {
+    booking(input:{userId:$userId, canteenId:$canteenId,type:breakfast,date:$date})
+  }
+`
+export const bookingLunch=gql`
+  mutation booking($userId:Int!,$canteenId:Int!,$date:String!) {
+    booking(input:{userId:$userId, canteenId:$canteenId,type:lunch,date:$date})
+  }
+`
+
+export const bookingDinner=gql`
+  mutation booking($userId:Int!,$canteenId:Int!,$date:String!) {
+    booking(input:{userId:$userId, canteenId:$canteenId,type:dinner,date:$date})
+  }
+`
+
+export const queryBooking=gql`
+  query queryBooking($userId:Int!){
+    booking(filter:{userId:$userId}){
+      skip
+      totalCount
+      rows{
+        id
+        userId
+        createdAt
+        date
+        type
+        canteenId
+      }
+    }
+  }
+`
+
+export const cancelBooking = gql`
+  mutation cancelBooking($userId:Int!,$bookingId:Int!){
+    cancelBooking(input:{userId:$userId, bookingId:$bookingId})
+  }
+`
+
+export const spend = gql`
+  mutation spend($userId:Int!, $canteenId:Int!, $uuid:String!){
+    spend(input:{userId:$userId, canteenId:$canteenId, uuid:$uuid})
+  }
+`
+
+export const transfer = gql`
+  mutation transfer($fromUserId:Int!, $toUserId:Int!,$number:Int!, $type:String!){
+    transferTickets(input:{fromUserId:$fromUserId, toUserId:$toUserId, number:$number,type:$type}){
+      errorMsg
+      errorCount
+      successCount
+    }
   }
 `

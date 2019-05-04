@@ -1,15 +1,28 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div style="text-align:center">
-  <h1>
-    Welcome to {{ title }}!
-  </h1>
-  <img width="300" alt="Angular Logo" src="data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCAyNTAgMjUwIj4KICAgIDxwYXRoIGZpbGw9IiNERDAwMzEiIGQ9Ik0xMjUgMzBMMzEuOSA2My4ybDE0LjIgMTIzLjFMMTI1IDIzMGw3OC45LTQzLjcgMTQuMi0xMjMuMXoiIC8+CiAgICA8cGF0aCBmaWxsPSIjQzMwMDJGIiBkPSJNMTI1IDMwdjIyLjItLjFWMjMwbDc4LjktNDMuNyAxNC4yLTEyMy4xTDEyNSAzMHoiIC8+CiAgICA8cGF0aCAgZmlsbD0iI0ZGRkZGRiIgZD0iTTEyNSA1Mi4xTDY2LjggMTgyLjZoMjEuN2wxMS43LTI5LjJoNDkuNGwxMS43IDI5LjJIMTgzTDEyNSA1Mi4xem0xNyA4My4zaC0zNGwxNy00MC45IDE3IDQwLjl6IiAvPgogIDwvc3ZnPg==">
-</div>
-<h2>Here are some links to help you start: </h2>
-<ul>
-  <li>
-    <h2><a href="user">Users</a></h2>
-  </li>
-</ul>
 
-<router-outlet></router-outlet>
+<ng-container *ngIf="isLoggedIn; else login">
+
+    <ng-container *ngIf="isCanteenAdmin; else other">
+      <app-canteen-admin></app-canteen-admin>
+    </ng-container>
+
+    
+
+    <ng-template #other>
+      <weui-tabbar>
+          <weui-tab heading="用餐" [icon]="'<img src=./assets/icon/scan.png>'" class="tabbar">
+            <div class="tag-content">
+                <app-index style="height: 100%;width: 100%;"></app-index>
+            </div>
+          </weui-tab>
+          <weui-tab heading="订餐" [icon]="'<img src=./assets/icon/shop.png>'" class="tabbar">
+            <app-booking></app-booking>
+          </weui-tab>
+          <weui-tab heading="我" [icon]="'<img src=./assets/icon/setting.png>'" class="tabbar">
+              <app-profile style="height: 100%;width: 100%;"></app-profile>
+          </weui-tab>
+        </weui-tabbar>
+    </ng-template>
+</ng-container>
+<ng-template #login>
+  <app-login></app-login>
+</ng-template>

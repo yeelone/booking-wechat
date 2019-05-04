@@ -1,0 +1,93 @@
+<div class="container">
+  <div *ngIf="group" class="top-name">{{ group.name }}</div>
+  <table >
+    <thead>
+      <tr>
+        <td>餐票</td>
+        <td>余量</td>
+      </tr>
+    </thead>
+
+    <tbody>
+      <tr>
+        <td>早餐</td> <td>{{dataSource.breakfast}}</td>
+      </tr>
+      <tr>
+          <td>午餐</td> <td>{{dataSource.lunch}}</td>
+      </tr>
+      <tr>
+          <td>晚餐</td> <td>{{dataSource.dinner}}</td>
+      </tr>
+    </tbody>
+  </table>
+
+
+  <div class="weui-cells__title">选择就餐食堂</div>
+  <div class="weui-cells">
+      <div class="weui-cell weui-cell_select">
+          <div class="weui-cell__bd">
+              <select class="weui-select" name="select1" [(ngModel)]="res.canteen" name="canteen" *ngIf="canteens;else other">
+                  <option *ngFor="let c of canteens;" value="{{c.id}}" >{{c.name}}</option>
+              </select>
+          </div>
+          <ng-template #other> 
+                <span>该机构没有食堂?</span>
+          </ng-template>
+      </div>
+  </div>
+
+  <div class="weui-cells weui-cells_radio">
+      <label class="weui-cell weui-check__label" for="radio-{{i.id}}" *ngFor="let i of radio">
+          <div class="weui-cell__bd">
+              <p>{{i.name}}</p>
+          </div>
+          <div class="weui-cell__ft">
+              <input type="radio" class="weui-check" [(ngModel)]="res.select" name="radio1" [value]="i" id="radio-{{i.id}}" (change)="onChange(res.select)">
+              <span class="weui-icon-checked"></span>
+          </div>
+      </label>
+  </div>
+
+  <div *ngIf="showHint">
+      <p style="color:white;text-align: center;">注意:{{hint}}</p>
+  </div>
+
+  <div class="weui-cell date-cell">
+      <div class="weui-cell__hd"><label for="" class="weui-label">日期</label></div>
+      <div class="weui-cell__bd">
+          <input class="weui-input" [(ngModel)]="res.date" name="date" type="date" value="">
+      </div>
+  </div>
+    <button weui-button (click)="booking()" class="purple-color booking-btn">
+        提交预订
+    </button>
+    <p>
+        <button weui-button [weui-type]="'default'" (click)="popupShow()" class="booking-btn yellow-color">查看预订情况</button>
+    </p>
+
+    <weui-popup #full  >
+        <article class="weui-article booking-list">
+            <weui-loadmore [type]="type" *ngIf="!cancelDone"></weui-loadmore>
+            
+            <section>
+                <table>
+                    <thead>
+                        <tr><td>预订日期</td> <td>订餐类型</td><td>Action</td></tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let b of bookings;">
+                            <td>{{ b.id }} {{ b.date }} </td>
+                            <td>{{ nameMap[b.type] }} </td>
+                            <td>
+                                <button class="weui-btn weui-btn_primary" (click)="cancelBooking(b.id)">取消</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </section>
+        </article>
+    </weui-popup>
+
+
+    </div>
+

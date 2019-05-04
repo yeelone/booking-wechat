@@ -1,0 +1,32 @@
+<div class="login-container">
+
+ <h1 id="header">食堂报餐系统</h1>
+    
+<form #f="ngForm" (ngSubmit)="onSave()">
+  <div class="weui-cells weui-cells_form">
+      <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">用户名</label></div>
+          <div class="weui-cell__bd">
+              <input class="weui-input" type="text" [(ngModel)]="username" name="username" placeholder="请输入用户名"
+                  weui-input="username" weui-required>
+          </div>
+      </div>
+
+      <div class="weui-cell">
+          <div class="weui-cell__hd"><label class="weui-label">密码</label></div>
+          <div class="weui-cell__bd">
+              <input class="weui-input" type="password" [(ngModel)]="password" name="password" placeholder="请输入密码"
+                  weui-input="password" weui-required>
+          </div>
+      </div>
+
+      <div class="weui-btn-area">
+          <button class="weui-btn weui-btn_primary"
+              [disabled]="!f.form.valid || !f.form.dirty"
+              [ngClass]="{'weui-btn_disabled': !f.form.valid || !f.form.dirty}">登录</button>
+      </div>
+  </div>
+</form>
+
+</div>
+

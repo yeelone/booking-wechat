@@ -7,10 +7,20 @@ import { WeUiModule } from 'ngx-weui';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { GraphQLModule } from './graphql.module';
 import { HttpClientModule } from '@angular/common/http';
-
+import { FormsModule } from '@angular/forms';
+import { IndexComponent } from './pages/index/index.component';
+import { LoginComponent } from './pages/login/login.component';
+import { BookingComponent } from './pages/booking/booking.component';
+import { ProfileComponent } from './pages/profile/profile.component';
+import { CanteenAdminComponent } from './pages/canteen-admin/canteen-admin.component';
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    IndexComponent,
+    LoginComponent,
+    BookingComponent,
+    ProfileComponent,
+    CanteenAdminComponent
   ],
   imports: [
     BrowserModule,
@@ -18,7 +28,8 @@ import { HttpClientModule } from '@angular/common/http';
     WeUiModule.forRoot(),
     BrowserAnimationsModule,
     GraphQLModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

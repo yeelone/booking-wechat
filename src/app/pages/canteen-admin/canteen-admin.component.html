@@ -1,0 +1,32 @@
+
+<div class="top-container" >
+   
+    <p>您所管理的食堂</p>
+    <p> {{currentUser?.username}}</p>
+    <ul class="canteen-list">
+        <li *ngFor="let c of canteens;">
+          <span (click)="sub(c)"> {{ c.name }} </span>
+        </li>
+    </ul>
+
+    <ng-container *ngIf="connectSuccess;">
+      <div>
+        <span class="link-hint">成功建立连接,等待客户扫码...</span>
+      </div>
+
+
+      <div class="connection-confirm">
+        <ng-container *ngIf="messages?.length > 0">
+            {{ messages?.length - 1 }}
+        </ng-container>
+      </div> 
+    </ng-container>
+
+</div>
+<div class="bottom-container">
+    <div>
+      <ul class="order-list">
+        <li *ngFor="let m of messages?.reverse()" > {{m?.createdAt}} <span> {{m?.createdBy?.username}} </span> 已确认 </li>
+      </ul>
+    </div>
+</div>  
