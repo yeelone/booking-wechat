@@ -3,12 +3,15 @@
 // }
 
 // for debug 
-const config = {
-    baseurl : 'http://127.0.0.1:8080',
-    // baseurl : 'http://jd96138.com',
-    appid: "wxca621d166ede0e26",
-    // server: "jd96138.com",
-    server: "127.0.0.1:8080",
+var config = {
+    // baseurl : 'http://127.0.0.1:8080',
+    baseurl : 'http://jd96138.com',
+    appid: "",
+    // server: "127.0.0.1:8080",
+    server: "jd96138.com",
+    prompt: "",
 }
+
+config.prompt = config.baseurl + "/assets/audio/prompt.mp3";
 
 export default config;

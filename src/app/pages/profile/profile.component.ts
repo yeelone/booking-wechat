@@ -69,7 +69,7 @@ export class ProfileComponent implements OnInit {
       localStorage.removeItem('currentUser');
       localStorage.removeItem('permissions');
       localStorage.removeItem('currentToken');
-      this.router.navigate(["login"]);
+      location.reload();
     },(error)=>{
       this.isLoadingResults = false  ;
       alert("error:"+error);

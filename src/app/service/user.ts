@@ -161,3 +161,13 @@ export const transfer = gql`
     }
   }
 `
+
+
+export const queryConfig = gql`
+  query config {
+      config{
+        wxAppID
+        prompt
+      }
+    }
+`

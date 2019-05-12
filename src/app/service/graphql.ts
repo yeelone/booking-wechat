@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import { receiveMessage,queryMessage } from './message';
 import { queryTest } from './test';
-import { queryTickets, updateUser, loginUser, logoutUser, queryCanteensOfGroup, bookingBreakfast, bookingLunch, bookingDinner, queryBooking, cancelBooking, spend, transfer, queryCanteensByAdmin } from './user';
+import { queryTickets, updateUser, loginUser, logoutUser, queryCanteensOfGroup, bookingBreakfast, bookingLunch, bookingDinner, queryBooking, cancelBooking, spend, transfer, queryCanteensByAdmin, queryConfig } from './user';
 
 export interface Response {
 }
@@ -31,5 +31,5 @@ export class ServiceGQl extends Query<Response> {
     public static transferGQL = transfer; 
 
     public static queryCanteensByAdminGQL = queryCanteensByAdmin;
-
+    public static queryConfigGQL = queryConfig; 
 }

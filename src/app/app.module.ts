@@ -1,5 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, APP_INITIALIZER ,Injector } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -13,6 +13,12 @@ import { LoginComponent } from './pages/login/login.component';
 import { BookingComponent } from './pages/booking/booking.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CanteenAdminComponent } from './pages/canteen-admin/canteen-admin.component';
+import { ConfigService } from './config.service';
+
+export function loadConfigFactory(configService: ConfigService): Function {
+  return () => configService.load();
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -31,7 +37,12 @@ import { CanteenAdminComponent } from './pages/canteen-admin/canteen-admin.compo
     HttpClientModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{
+    provide: APP_INITIALIZER,
+    useFactory: loadConfigFactory,
+    deps: [ConfigService, Injector],
+    multi: true
+  }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

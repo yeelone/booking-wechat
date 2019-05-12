@@ -5,6 +5,8 @@ import { ServiceGQl } from 'src/app/service/graphql';
 import { Message } from 'src/app/model/message';
 import { User } from 'src/app/model/user';
 import { Canteen } from 'src/app/model/canteen';
+import config from 'src/app/config/config';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-canteen-admin',
@@ -22,11 +24,12 @@ export class CanteenAdminComponent implements OnInit {
   connectSuccess:boolean = false; 
   currentUser:User;
 
-  constructor(private apollo:Apollo) { 
+  constructor(private apollo:Apollo,private router: Router) { 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
   }
 
   ngOnInit() {
+    console.log(config);
     this.getCanteens();
   }
 
@@ -42,7 +45,6 @@ export class CanteenAdminComponent implements OnInit {
       })
     .valueChanges
     .subscribe((result) => { 
-      console.log(result)
       this.isLoading = false  ;
       if ( result.data['canteens']['rows'].length > 0 ){
           this.canteens = result.data['canteens']['rows'];
@@ -55,12 +57,13 @@ export class CanteenAdminComponent implements OnInit {
 
   playAudio(){
     let audio = new Audio();
-    audio.src = "http://localhost:8080/download/audio/9444.mp3";
+    audio.src = config.prompt;
     audio.load();
     audio.play();
   }
 
   sub(c:Canteen){
+    this.messages = [];
     this.isLoading = true ; 
     this.apollo.subscribe({
       query: ServiceGQl.receiveMessageGQL,
@@ -72,7 +75,11 @@ export class CanteenAdminComponent implements OnInit {
         console.log(resp)
         this.message = resp.data['messageAdded'];
         this.playAudio();
-        this.messages.push(this.message);
+
+        if ( this.message.text != "connect success" ) {
+          this.messages.push(this.message);
+        }
+        
         this.isLoading = false; 
         this.connectSuccess = true ; 
       },
@@ -80,6 +87,26 @@ export class CanteenAdminComponent implements OnInit {
         console.log("error",error)
         this.connectSuccess = false; 
       });
+  }
+
+  logout():void{
+    this.isLoading = true  ;
+    this.apollo.mutate({
+      mutation: ServiceGQl.logoutGQL,
+      variables: {
+        username:this.currentUser.username, 
+      }
+    })
+    .subscribe((result) => { 
+      this.isLoading = false  ;
+      localStorage.removeItem('currentUser');
+      localStorage.removeItem('permissions');
+      localStorage.removeItem('currentToken');
+      location.reload();
+    },(error)=>{
+      this.isLoading = false  ;
+      alert("error:"+error);
+    });
   }
 
 }

@@ -5,6 +5,7 @@ import { Role } from './model/role';
 import { Apollo } from 'apollo-angular';
 import { ServiceGQl } from './service/graphql';
 import { Message } from './model/message';
+import config from './config/config';
 
 @Component({
   selector: 'app-root',
@@ -22,8 +23,7 @@ export class AppComponent {
   currentUser:User;
   role: Role;
  
-
-  constructor(private apollo: Apollo) { }
+  constructor() {}
 
   ngOnInit() {
     console.log("Power by Jiangyilong 2019");
