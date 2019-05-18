@@ -33,7 +33,7 @@ export class AppComponent {
       this.isLoggedIn = true;
       if (this.currentUser['roles']['rows']){
         this.role =  this.currentUser['roles']['rows'][0];
-
+        console.log(this.currentUser['roles']['rows'])
         this.isCanteenAdmin = false ; 
         if ( this.role.name == "食堂管理员"){
           this.isCanteenAdmin = true ; 

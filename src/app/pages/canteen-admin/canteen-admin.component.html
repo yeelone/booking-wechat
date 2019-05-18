@@ -1,8 +1,7 @@
 
 <div class="top-container" >
     <a href="javascript:" class="logout-btn" (click)="logout()" >注销</a>
-    <p>您所管理的食堂</p>
-    <p> {{currentUser?.username}}</p>
+    <p> {{currentUser?.username}}, 您当前所在的食堂是?</p>
     <ul class="canteen-list">
         <li *ngFor="let c of canteens;">
           <span (click)="sub(c)"> {{ c.name }} </span>
@@ -17,7 +16,9 @@
 
       <div class="connection-confirm">
         <ng-container *ngIf="messages?.length > 0">
-            {{ messages?.length - 1 }}
+            <!-- {{ messages?.length }} -->
+
+            {{ messages[0]?.text }} <span style="font-size:24px;">份</span>
         </ng-container>
       </div> 
     </ng-container>
@@ -25,8 +26,12 @@
 </div>
 <div class="bottom-container">
     <div>
+        <ng-container *ngIf="messages?.length > 0">
+            用餐人数: {{ messages?.length }}
+        </ng-container>
+
       <ul class="order-list">
-        <li *ngFor="let m of messages?.reverse()" > {{m?.createdAt}} <span> {{m?.createdBy?.username}} </span> 已确认 </li>
+        <li *ngFor="let m of messages?.reverse()" > {{m?.createdAt}} <span> {{m?.createdBy?.username}} </span> 预订 {{ m?.text }} 份</li>
       </ul>
     </div>
 </div>  

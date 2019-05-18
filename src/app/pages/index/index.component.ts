@@ -55,26 +55,26 @@ export class IndexComponent implements AfterViewInit , OnDestroy {
 
   openScanQRCode():void{
 
-    // let result = "BookingConfirm:true;id:1;name:第一食堂;date:2019-04-22 17:58;qrcode_uuid:biup0aul0s10lc99j8p0";
-    // let data = result.split(";");
-    // let canteenId = 0 ; 
-    // let uuid = "";
-    // if ( data.length > 0 ){
-    //   let idStr = data[1];
-    //   canteenId = +idStr.split(":").pop();
-    //   let uuidStr = data.pop();
-    //   uuid = uuidStr.split(":").pop();
-    // }
+    let result = "BookingConfirm:true;id:6;name:第二食堂;date:2019-05-17 17:58;qrcode_uuid:biup0fel0s10lc99j8q0";
+    let data = result.split(";");
+    let canteenId = 0 ; 
+    let uuid = "";
+    if ( data.length > 0 ){
+      let idStr = data[1];
+      canteenId = +idStr.split(":").pop();
+      let uuidStr = data.pop();
+      uuid = uuidStr.split(":").pop();
+    }
 
-    // this.spend(canteenId, uuid)
+    this.spend(canteenId, uuid)
     
-    // return ;
+    return ;
 
     this.tokenService.getToken(location.href)
       .subscribe(
         response => {
           wx.config({
-            debug: true, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数
+            debug: false, // 开启调试模式,调用的所有api的返回值会在客户端alert出来，若要查看传入的参数
             appId: config.appid, // 必填，公众号的唯一标识
             timestamp: response['timestamp'], // 必填，生成签名的时间戳
             nonceStr: response['nonce_str'], // 必填，生成签名的随机串

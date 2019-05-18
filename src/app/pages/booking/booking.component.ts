@@ -39,6 +39,7 @@ export class BookingComponent implements OnInit {
     canteen: 0,
     select:"",
     date:"", 
+    number:1,
   };
   
   cancelDone:boolean = true;
@@ -125,6 +126,27 @@ export class BookingComponent implements OnInit {
   }
 
   booking():void{
+    switch(this.res.select){
+      case "breakfast":
+        if ( this.res.number > this.dataSource.breakfast ){
+          alert("没有足够餐卷");
+          return ; 
+        }
+        break;
+      case "lunch":
+        if ( this.res.number > this.dataSource.lunch ){
+          alert("没有足够餐卷");
+          return ; 
+        }
+        break;
+      case "dinner":
+        if ( this.res.number > this.dataSource.dinner ){
+          alert("没有足够餐卷");
+          return ; 
+        }
+        break;
+    }
+    
     this.isLoadingResults = true  ;
     this.apollo.mutate({
       mutation: this.res.select.gqlStr,
@@ -132,6 +154,7 @@ export class BookingComponent implements OnInit {
         userId:+this.currentUser.id, 
         canteenId:+this.res.canteen,
         date:this.res.date,
+        number:this.res.number,
       },
     }).subscribe((data) => {
       console.log("data",data);

@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Query } from 'apollo-angular';
 import { receiveMessage,queryMessage } from './message';
-import { queryTest } from './test';
 import { queryTickets, updateUser, loginUser, logoutUser, queryCanteensOfGroup, bookingBreakfast, bookingLunch, bookingDinner, queryBooking, cancelBooking, spend, transfer, queryCanteensByAdmin, queryConfig } from './user';
 
 export interface Response {
@@ -11,7 +10,6 @@ export interface Response {
     providedIn: 'root',
   }) 
 export class ServiceGQl extends Query<Response> {
-    public static queryTest = queryTest ; 
     public static receiveMessageGQL = receiveMessage ; 
     public static queryMessageGQL = queryMessage ;
 

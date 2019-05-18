@@ -107,19 +107,19 @@ export const queryCanteensOfGroup =  gql`
 `
 
 export const bookingBreakfast=gql`
-  mutation booking($userId:Int!,$canteenId:Int!,$date:String!) {
-    booking(input:{userId:$userId, canteenId:$canteenId,type:breakfast,date:$date})
+  mutation booking($userId:Int!,$canteenId:Int!,$date:String!,$number:Int!) {
+    booking(input:{userId:$userId, canteenId:$canteenId,type:breakfast,date:$date,number:$number})
   }
 `
 export const bookingLunch=gql`
-  mutation booking($userId:Int!,$canteenId:Int!,$date:String!) {
-    booking(input:{userId:$userId, canteenId:$canteenId,type:lunch,date:$date})
+  mutation booking($userId:Int!,$canteenId:Int!,$date:String!,$number:Int!) {
+    booking(input:{userId:$userId, canteenId:$canteenId,type:lunch,date:$date,number:$number})
   }
 `
 
 export const bookingDinner=gql`
-  mutation booking($userId:Int!,$canteenId:Int!,$date:String!) {
-    booking(input:{userId:$userId, canteenId:$canteenId,type:dinner,date:$date})
+  mutation booking($userId:Int!,$canteenId:Int!,$date:String!,$number:Int!) {
+    booking(input:{userId:$userId, canteenId:$canteenId,type:dinner,date:$date,number:$number})
   }
 `
 
@@ -135,6 +135,7 @@ export const queryBooking=gql`
         date
         type
         canteenId
+        number
       }
     }
   }
