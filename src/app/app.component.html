@@ -9,6 +9,9 @@
 
     <ng-template #other>
       <weui-tabbar>
+          <weui-tab heading="点评" [icon]="'<img src=./assets/icon/chat.png>'" class="tabbar">
+            <app-comment></app-comment>
+          </weui-tab>
           <weui-tab heading="用餐" [icon]="'<img src=./assets/icon/scan.png>'" class="tabbar">
             <div class="tag-content">
                 <app-index style="height: 100%;width: 100%;"></app-index>
@@ -17,6 +20,7 @@
           <weui-tab heading="订餐" [icon]="'<img src=./assets/icon/shop.png>'" class="tabbar">
             <app-booking></app-booking>
           </weui-tab>
+          
           <weui-tab heading="我" [icon]="'<img src=./assets/icon/setting.png>'" class="tabbar">
               <app-profile style="height: 100%;width: 100%;"></app-profile>
           </weui-tab>

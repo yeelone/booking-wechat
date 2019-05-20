@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="messages" #scrollMe>
+    <ul>
+      <li *ngFor="let c of comments;" >
+        <p *ngIf="c" [style.text-align]="check(c)">
+            <span>{{c?.user.username}}</span><br/>
+            <span class="message-body">
+                {{c?.body}}
+                <br/>
+                <span class="datetime"> {{c?.createdAt}} </span>
+              </span>
+            </p>
+      </li>
+    </ul>
+  </div>
+
+  <div class="submit-input">
+        <textarea
+          placeholder="输入"
+          rows="3"
+          [(ngModel)]="body"
+          name="txt"
+          weui-cn="2"
+          maxlength="500"
+        ></textarea>
+        <button weui-button [weui-type]="'default'" class="yellow-color" (click)="comment()">发送</button>
+</div>

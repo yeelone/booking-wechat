@@ -163,7 +163,6 @@ export const transfer = gql`
   }
 `
 
-
 export const queryConfig = gql`
   query config {
       config{
@@ -171,4 +170,43 @@ export const queryConfig = gql`
         prompt
       }
     }
+`
+
+export const queryComments = gql`
+  query comment($take:Int!,$skip:Int!) {
+    comments(pagination:{take:$take,skip:$skip}){
+      rows{
+        id
+        body
+        createdAt
+        user{
+          id
+          username
+        }
+      }
+    }
+  }
+`
+
+export const createComment = gql`
+  mutation createComment($userId:Int!,$body:String!,$tunnel:String!) {
+    createComment(input:{userId:$userId,body:$body,tunnel:$tunnel}){
+      createdAt
+      body
+    } 
+  }
+`
+
+export const subComments = gql`
+  subscription subComment($roomName:String!,$userId:Int!) {
+    subComment(roomName:$roomName,userId:$userId){
+      createdAt
+      body
+      user{
+        id
+        username
+        
+      }
+    }
+  }
 `

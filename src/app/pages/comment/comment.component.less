@@ -1,0 +1,55 @@
+.container {
+    display: flex; 
+    flex-direction: column;
+    height: 100%;
+    
+
+    ul {
+        list-style:none;
+        li{
+            padding: 10px;
+
+            
+        }
+    }
+
+    .messages {
+        flex: 1;
+        background-image: linear-gradient(to top, #e6e9f0 0%, #eef1f5 100%);
+        overflow: auto;
+
+        .message-body {
+            background: #37474f;
+            color: white;
+            padding: 5px 5px;
+            border-radius: 10px;
+            display: inline-block;
+
+            .datetime{
+                color: darkgrey;
+                font-size: 12px;
+            }
+        }
+        
+    }
+
+    .submit-input {
+        height: 80px;
+
+        display: flex; 
+
+        textarea {
+            flex: 1;
+        }
+        button {
+            width: 100px;
+        }
+    }
+
+
+    
+}
+
+.weui-textarea-counter {
+    display: none !important;
+}

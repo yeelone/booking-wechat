@@ -19,6 +19,9 @@ export class ConfigService {
           console.log("config", resp)
           config.appid = resp.data['config']['wxAppID'];
           config.prompt = resp.data['config']['prompt'];
+          if ( resp.data['config']['company'] ){
+            config.company = resp.data['config']['company'];
+          }
 
           resolve(resp);
 

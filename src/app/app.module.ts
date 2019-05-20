@@ -14,6 +14,7 @@ import { BookingComponent } from './pages/booking/booking.component';
 import { ProfileComponent } from './pages/profile/profile.component';
 import { CanteenAdminComponent } from './pages/canteen-admin/canteen-admin.component';
 import { ConfigService } from './config.service';
+import { CommentComponent } from './pages/comment/comment.component';
 
 export function loadConfigFactory(configService: ConfigService): Function {
   return () => configService.load();
@@ -26,7 +27,8 @@ export function loadConfigFactory(configService: ConfigService): Function {
     LoginComponent,
     BookingComponent,
     ProfileComponent,
-    CanteenAdminComponent
+    CanteenAdminComponent,
+    CommentComponent
   ],
   imports: [
     BrowserModule,
