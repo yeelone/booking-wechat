@@ -1,27 +1,33 @@
 # BookingWechat
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.1.4.
+项目使用Angular 8 搭建,本来是为了测试angular 在微信公众号里的效果。测试结果还算满意，现在开源出来。希望能多少有点作用。
 
-## Development server
+## 开发
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
+## 构建
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Run `ng build ` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Build
+# 组成
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
+1. [server](https://github.com/yeelone/booking-server) : golang + graphql + postgresql实现的服务器程序
+2. [admin](https://github.com/yeelone/booking-admin) : angular + material 
+3. [wechat](https://github.com/yeelone/booking-wechat)：angular + weui 
 
-## Running unit tests
+# 截图
+![image](https://wx3.sinaimg.cn/mw690/6547935dgy1g82r8cerukj20au0j4q3n.jpg)
+![image](https://wx3.sinaimg.cn/mw690/6547935dgy1g82r8ceowfj20at0j4aal.jpg)
+![image](https://wx4.sinaimg.cn/mw690/6547935dgy1g82r8cxgfjj20ao0j2js7.jpg)
+![image](https://wx4.sinaimg.cn/mw690/6547935dgy1g82r8cfqy2j20ao0j00ti.jpg)
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## Running end-to-end tests
+# 联系方式
+author: elone
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+email: yljckh@gmail.com
 
-## Further help
+wechat : j_vanni 
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+
