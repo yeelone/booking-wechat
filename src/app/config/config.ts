@@ -2,8 +2,8 @@
 //     baseurl : 'http://jd96138.com'
 // }
 
-// for debug 
-var config = {
+// for debug
+const config = {
     baseurl : 'http://127.0.0.1:8080',
     // baseurl : 'http://jd96138.com',
     appid: "",
@@ -11,8 +11,8 @@ var config = {
     // server: "jd96138.com",
     prompt: "",
     company:"public",
-}
+};
 
-config.prompt = config.baseurl + "/assets/audio/prompt.mp3";
+config.prompt = config.baseurl + '/assets/audio/prompt.mp3';
 
 export default config;

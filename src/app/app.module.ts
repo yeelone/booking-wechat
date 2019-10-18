@@ -33,7 +33,7 @@ export function loadConfigFactory(configService: ConfigService): Function {
   imports: [
     BrowserModule,
     AppRoutingModule,
-    WeUiModule.forRoot(),
+    WeUiModule,
     BrowserAnimationsModule,
     GraphQLModule,
     HttpClientModule,

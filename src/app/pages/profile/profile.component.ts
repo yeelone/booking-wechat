@@ -41,8 +41,8 @@ export class ProfileComponent implements OnInit {
   { id: "lunch", name: '午餐'}, 
   { id: "dinner", name: '晚餐'}];
 
-  @ViewChild('full') fullPopup: PopupComponent;
-  @ViewChild('transfer') transferPopup: PopupComponent;
+  @ViewChild('full', {static: false}) fullPopup: PopupComponent;
+  @ViewChild('transfer', {static: false}) transferPopup: PopupComponent;
 
   constructor(private apollo: Apollo,private router: Router,private tokenService:TokenService) { }
 

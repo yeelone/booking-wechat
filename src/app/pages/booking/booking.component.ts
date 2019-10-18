@@ -50,7 +50,7 @@ export class BookingComponent implements OnInit {
     "dinner" :"晚餐",
   };
 
-  @ViewChild('full') fullPopup: PopupComponent;
+  @ViewChild('full', {static: false}) fullPopup: PopupComponent;
 
   radio: any[] = [{ id: "breakfast", name: '早餐',gqlStr:ServiceGQl.bookingBreakfastGQL }, 
                   { id: "lunch", name: '午餐',gqlStr:ServiceGQl.bookingLunchGQL }, 

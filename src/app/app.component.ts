@@ -15,34 +15,31 @@ import config from './config/config';
 export class AppComponent {
   title = 'booking-wechat';
 
-  isLoading: boolean = false; 
+  isLoading = false;
   isLoggedIn$: Observable<boolean>;
-  isLoggedIn:boolean = false;
-  isCanteenAdmin:boolean = false ;
+  isLoggedIn = false;
+  isCanteenAdmin = false ;
 
-  currentUser:User;
+  currentUser: User;
   role: Role;
- 
   constructor() {}
 
   ngOnInit() {
-    console.log("Power by Jiangyilong 2019");
+    console.log('Power by Jiangyilong 2019');
 
     this.currentUser = JSON.parse(localStorage.getItem('currentUser'));
     if (this.currentUser && this.currentUser.token) {
       this.isLoggedIn = true;
-      if (this.currentUser['roles']['rows']){
+      if (this.currentUser['roles']['rows']) {
         this.role =  this.currentUser['roles']['rows'][0];
-        console.log(this.currentUser['roles']['rows'])
-        this.isCanteenAdmin = false ; 
-        if ( this.role.name == "食堂管理员"){
-          this.isCanteenAdmin = true ; 
+        this.isCanteenAdmin = false ;
+        if ( this.role.name === '食堂管理员') {
+          this.isCanteenAdmin = true ;
         }
       }
-    }else{
+    } else {
       this.isLoggedIn = false;
     }
-    
   }
 
 }

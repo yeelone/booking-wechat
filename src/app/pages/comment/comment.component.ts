@@ -13,7 +13,7 @@ import { Comment } from 'src/app/model/comment';
 })
 export class CommentComponent implements OnInit {
 
-  @ViewChild('scrollMe') private myScrollContainer: ElementRef;
+  @ViewChild('scrollMe', {static: false}) private myScrollContainer: ElementRef;
 
   private subscription: Subscription;
 
